@@ -396,8 +396,9 @@ DECLARE_FUNC(yespowerkoto) {
     
     yespower_koto_hash(input, input_len, output);
 
-    Local<Object> buff = Nan::NewBuffer(output, 32).ToLocalChecked();
-    args.GetReturnValue().Set(buff);
+    //Local<Object> buff = Nan::NewBuffer(output, 32).ToLocalChecked();
+    //args.GetReturnValue().Set(buff);
+    SET_BUFFER_RETURN(output, 32);
 }
 
 DECLARE_FUNC(yespowerr8) {
