@@ -378,6 +378,28 @@ DECLARE_FUNC(yespower) {
     SET_BUFFER_RETURN(output, 32);
 }
 
+
+DECLARE_FUNC(yespowerkoto) {
+    DECLARE_SCOPE;
+
+    if (args.Length() < 1)
+        RETURN_EXCEPT("You must provide one argument.");
+
+    Local<Object> target = args[0]->ToObject();
+
+    if(!Buffer::HasInstance(target))
+        RETURN_EXCEPT("Argument should be a buffer object.");
+
+    char * input = Buffer::Data(target);
+    uint32_t input_len = Buffer::Length(target);
+    char* output = new char[32];
+    
+    yespower_koto_hash(input, input_len, output);
+
+    Local<Object> buff = Nan::NewBuffer(output, 32).ToLocalChecked();
+    args.GetReturnValue().Set(buff);
+}
+
 DECLARE_FUNC(yespowerr8) {
     DECLARE_SCOPE;
 
@@ -513,6 +535,7 @@ DECLARE_INIT(init) {
     NODE_SET_METHOD(exports, "yespowerr16", yespowerr16);
     NODE_SET_METHOD(exports, "yespowerr24", yespowerr24);
     NODE_SET_METHOD(exports, "yespowerr32", yespowerr32);
+    NODE_SET_METHOD(exports, "yespowerkoto", yespowerkoto);
     NODE_SET_METHOD(exports, "lyra2v2", lyra2v2);
 }
 

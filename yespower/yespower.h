@@ -129,6 +129,8 @@ void yespowerr16_hash(const char *input, char *output, uint32_t len);
 void yespowerr24_hash(const char *input, char *output, uint32_t len);
 void yespowerr32_hash(const char *input, char *output, uint32_t len);
 
+void yespower_koto_hash(const char *input, size_t inputlen, char *output);
+
 #ifdef __cplusplus
 }
 #endif
