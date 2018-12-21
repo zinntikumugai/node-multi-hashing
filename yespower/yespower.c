@@ -34,6 +34,6 @@ void yespower_koto_hash(const char *input, size_t inputlen, char *output)
 		.pers = (const uint8_t *)input,
 		.perslen = inputlen
 	};
-	if (yespower_tls((unsigned char *)input, inputlen, &params, (yespower_binary_t *)output))
+	if (yespower_tls((const uint8_t *)input, inputlen, &params, (yespower_binary_t *)output))
 		abort();
 }
